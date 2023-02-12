@@ -1,23 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import "./App.css";
+import "./navigation/Navigation.css";
+import Navigation from "./navigation/Navigation";
+import ManageAccount from "./manageAccount";
+import Settings from "./settings";
 
 function App() {
+  const [showManageAccount, setShowManageAccount] = useState(false);
+  const [showSettings, setShowSettings] = useState(false);
+
+  const handleMenu = (type) => {
+    if (type === "manage") {
+      setShowManageAccount(true);
+    } else {
+      setShowSettings(true);
+    }
+  };
+
+  const hideManageAccount = () => setShowManageAccount(false);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Navigation handleMenu={handleMenu} />
+      {/* {Manage account section and Settings --------------> } */}
+      {showManageAccount ? (
+        <ManageAccount hideManageAccount={hideManageAccount} />
+      ) : null}
+      {showSettings ? <Settings /> : null}
     </div>
   );
 }

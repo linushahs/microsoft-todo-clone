@@ -1,38 +1,104 @@
-.App {
-  text-align: center;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+:root {
+  --primary-btn-color: #323232;
+  --bg-color: #202020;
+  --dropdown-color: #242424;
+  --btn-lbar-color: #74b6e8;
+  --border-color: #585858;
+  --border-radius: 4px;
+  --font-size: 14px;
+  --text-color-sm: rgb(186, 186, 186);
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+/* Manage account styling goes here ------------------->  */
+/* ------------------------------------------------>  */
+.ma-container {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
 }
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+.manage-account {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 0.5px solid var(--primary-btn-color);
+  background-color: var(--bg-color);
+  padding: 1rem 0;
+  border-radius: 6px;
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.manage-account > h4 {
+  text-align: center;
+  margin-bottom: 1rem;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.account {
+  padding: 1rem 1.5rem;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.account:hover {
+  background-color: rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+}
+
+.account > .account-details > p {
+  font-size: 12px;
+  color: var(--text-color-sm);
+}
+
+.account > button {
+  padding: 0.4rem;
+  background-color: rgb(183, 32, 32);
+  border: none;
+  color: white;
+  border-radius: var(--border-radius);
+}
+
+.account > .logo {
+  background-color: purple;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 0.5rem;
+}
+
+.add-account {
+  padding: 0.5rem 1.5rem 1rem 1.5rem;
+}
+
+.add-account > span {
+  margin: 0 0.5rem;
+  font-size: 20px;
+}
+.add-account:hover {
+  background-color: rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+}
+
+.close-btn {
+  margin: 1rem 1.5rem 0 0;
+  text-align: right;
+}
+
+.close-btn > button {
+  padding: 0.6rem 1rem;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: var(--border-radius);
+  border: 1px solid var(--primary-btn-color);
+  color: white;
+}
+.close-btn > button:hover {
+  background-color: rgba(0, 0, 0, 0.3);
+  cursor: pointer;
 }
