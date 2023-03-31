@@ -1,0 +1,181 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.nav-block {
+  width: 300px;
+  height: 100vh;
+  background-color: var(--bg-color);
+  color: white;
+  position: fixed;
+}
+
+header {
+  padding: 1.5rem 1rem 1rem 1rem;
+  display: flex;
+  align-items: center;
+}
+
+header>.logo {
+  background-color: purple;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-right: 0.5rem;
+}
+
+header>span>p {
+  font-size: 14px;
+  color: var(--text-color-sm);
+}
+
+/* Search bar --------------->  */
+/* ------------------------->  */
+
+.search-bar {
+  margin: 0 1rem 1rem 1rem;
+  padding: 0.5rem 0.7rem;
+  border: 0.5px solid var(--primary-btn-color);
+  border-bottom: 1px solid white;
+  border-radius: var(--border-radius);
+  display: flex;
+  justify-content: space-between;
+}
+
+.search-bar>input[type="text"] {
+  border: none;
+  background: none;
+  color: white;
+  outline: none;
+  font-size: var(--font-size);
+}
+
+/* navigation menus  */
+/* <------------------------------------->  */
+
+.nav-menu {
+  list-style: none;
+  width: 100%;
+}
+
+.nav-menu>li {
+  margin: 0.5rem 0.3rem;
+  padding: 0.5rem 1rem;
+  border-radius: var(--border-radius);
+  background-color: none;
+  display: flex;
+  align-items: center;
+  z-index: -10;
+}
+
+.nav-menu>li.active {
+  background-color: var(--primary-btn-color);
+}
+
+.nav-menu>li>a {
+  text-decoration: none;
+  color: white;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  outline: none;
+}
+
+.icon {
+  font-size: 18px;
+  cursor: pointer;
+  margin-right: 1rem;
+}
+
+.right-side {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+
+
+.count {
+  display: flex;
+  justify-content: center;
+  font-size: 12px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background-color: #373737;
+}
+
+/* Add new list (block) -------------->  */
+/* <-----------------------------------> */
+.lists-container {
+  height: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.addlist-block {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.new-list {
+  width: 100%;
+  padding: 0.5rem 1rem;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.new-list:hover {
+  border-radius: var(--border-radius);
+  background-color: var(--primary-btn-color);
+}
+
+.addlist-block>.new-list>span {
+  margin-left: 1rem;
+}
+
+.c-group {
+  margin-left: auto;
+  font-size: 24px;
+}
+
+/* Dropdown menu goes here ----------------------->  */
+/* <--------------------------------------------------> */
+.dropdown {
+  background-color: var(--dropdown-color);
+  border-radius: var(--border-radius);
+  border: 0.5px solid var(--border-color);
+  width: 260px;
+  position: absolute;
+  bottom: 100%;
+  left: 15px;
+  z-index: 10;
+  list-style: none;
+  box-shadow: 2px 2px 9px 4px rgba(0, 0, 0, 0.3);
+}
+
+.dropdown>li:last-child {
+  border: none;
+}
+
+.dropdown>li {
+  padding: 0.8rem 1rem;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.dropdown>li:hover {
+  background-color: var(--primary-btn-color);
+  cursor: pointer;
+}
+
+.delete-btn {
+  color: "#ff1515";
+}
