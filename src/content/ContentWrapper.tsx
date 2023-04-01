@@ -1,6 +1,6 @@
 import React from "react";
 import Header from "./header/Header";
-import TodoContainer from "./main/TodoContainer";
+import TodoContainer from "./main/todo/TodoContainer";
 import AddTask from "./main/AddTask";
 
 export default function ContentWrapper() {
