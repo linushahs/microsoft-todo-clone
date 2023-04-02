@@ -14,29 +14,6 @@ import { BiTask, BiRename, BiUserPlus, BiBookAdd } from "react-icons/bi";
 import { GiHamburgerMenu } from "react-icons/gi";
 import DropdownMenu from "./DropdownMenu";
 import { useReactToPrint } from "react-to-print";
-import React from "react";
-
-/**
- * Hook that alerts clicks outside of the passed ref
- */
-// function useOutsideAlerter(ref) {
-//   useEffect(() => {
-//     /**
-//      * Alert if clicked on outside of element
-//      */
-//     function handleClickOutside(event: <) {
-//       if (ref.current && !ref.current.contains(event.target)) {
-//         alert("You clicked outside of me!");
-//       }
-//     }
-//     // Bind the event listener
-//     document.addEventListener("mousedown", handleClickOutside);
-//     return () => {
-//       // Unbind the event listener on clean up
-//       document.removeEventListener("mousedown", handleClickOutside);
-//     };
-//   }, [ref]);
-// }
 
 function NavigationMenu({
   iconTitle,
@@ -47,8 +24,9 @@ function NavigationMenu({
   text: string;
   count: number;
 }) {
-  const wrapperRef = useRef(null);
+  const wrapperRef = useRef<null | HTMLLIElement>(null);
   // useOutsideAlerter(wrapperRef);
+
   //State variables
   const [isActive, setIsActive] = useState(false);
   const [isDropdownActive, setIsDropdownActive] = useState(false);
@@ -64,13 +42,19 @@ function NavigationMenu({
     list: <GiHamburgerMenu className="mr-4 cursor-pointer text-[20px]" />,
   };
 
-  const handleDropdown = () => {
-    setIsDropdownActive(!isDropdownActive);
+  const handleDropdown = (e: React.MouseEvent<HTMLLIElement, MouseEvent>) => {
+    window.oncontextmenu = () => false;
+    setIsDropdownActive(true);
+    document.addEventListener("mousedown", (event) => {
+      const outsideClick = wrapperRef.current != event.target;
+      if (outsideClick) setIsDropdownActive(false);
+    });
   };
 
   return (
     <li
-      onContextMenu={() => handleDropdown()}
+      onContextMenu={(e) => handleDropdown(e)}
+      ref={wrapperRef}
       className="relative  mx-2 my-2 flex items-center rounded  px-3 py-2 text-white hover:bg-gray-600"
     >
       <a
@@ -78,7 +62,7 @@ function NavigationMenu({
         className=" decoration-none flex w-full items-center text-white outline-none"
       >
         {icons[iconTitle]} <span>{text}</span>
-        <div className="right-side" ref={wrapperRef}>
+        <div className="right-side">
           {isDropdownActive ? (
             <BsChevronUp
               onClick={() => setIsDropdownActive(false)}
