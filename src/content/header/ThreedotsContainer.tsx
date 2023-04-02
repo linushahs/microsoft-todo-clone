@@ -1,19 +1,47 @@
-import React from "react";
-import { BsArrowDownUp, BsChevronRight, BsPrinter } from "react-icons/bs";
+import React, { useState } from "react";
+import {
+  BsArrowDownUp,
+  BsChevronRight,
+  BsCalendarPlus,
+  BsPrinter,
+} from "react-icons/bs";
+import { AiOutlineStar } from "react-icons/ai";
 import { FiMail } from "react-icons/fi";
 
 export default function ThreedotsContainer() {
   const colors = ["#788CDE", "#BC7ABC", "#E46C8C", "red-500", "blue-500"];
   const colorStyle = "h-11 w-11";
+  const [showSortByDropdown, setShowSortByDropdown] = useState(false);
 
   return (
     <div className="absolute right-0 top-full mt-2.5 min-w-[290px] rounded border border-gray-600 bg-gray-800  ">
       {/* sort by section --------------->  */}
-      <div className="flex w-full cursor-pointer items-center  gap-4 px-4 py-3 hover:bg-gray-700">
+      <div
+        onMouseEnter={() => setShowSortByDropdown(true)}
+        onMouseLeave={() => setShowSortByDropdown(false)}
+        className="flex w-full cursor-pointer items-center  gap-4 px-4 py-3 hover:bg-gray-700"
+      >
         <BsArrowDownUp className="text-gray-400" />
         <h2>Sort by</h2>
         <BsChevronRight className="ml-auto text-gray-400" />
       </div>
+
+      {/* sort by dropdown ---------------------->  */}
+      {showSortByDropdown ? (
+        <ul className="absolute right-full top-0 flex w-[290px] flex-col rounded border border-gray-600 bg-gray-800">
+          <li className="flex cursor-pointer items-center gap-3 px-4 py-3 hover:bg-gray-700">
+            <AiOutlineStar className="text-[20px] text-gray-400" /> Importance
+          </li>
+          <li className="flex cursor-pointer items-center gap-3 px-4 py-3 hover:bg-gray-700">
+            <BsArrowDownUp className="text-[17px] text-gray-400" />{" "}
+            Alphabetically
+          </li>
+          <li className="flex cursor-pointer items-center gap-3 px-4 py-3 hover:bg-gray-700">
+            <BsCalendarPlus className="text-[17px] text-gray-400" /> Creation
+            Date
+          </li>
+        </ul>
+      ) : null}
 
       {/* theme section -------------->  */}
       <div className="px-4 py-2">

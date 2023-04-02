@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { AiFillStar, AiOutlineStar } from "react-icons/ai";
+import { AiFillStar, AiOutlineStar, AiFillDelete } from "react-icons/ai";
 import { BsCheck } from "react-icons/bs";
 
 export default function TodoTask({ task }: { task: string }) {
@@ -18,14 +18,22 @@ export default function TodoTask({ task }: { task: string }) {
         </span>
         <h2>{task}</h2>
       </div>
-      {starred ? (
-        <AiFillStar className="text-[22px]" onClick={() => setStarred(false)} />
-      ) : (
-        <AiOutlineStar
-          className="text-[22px]"
-          onClick={() => setStarred(true)}
-        />
-      )}
+
+      {/* right side ---------------->  */}
+      <div className="flex items-center gap-2">
+        {starred ? (
+          <AiFillStar
+            className="text-[22px]"
+            onClick={() => setStarred(false)}
+          />
+        ) : (
+          <AiOutlineStar
+            className="text-[22px]"
+            onClick={() => setStarred(true)}
+          />
+        )}
+        <AiFillDelete className="text-[20px] text-red-300" />
+      </div>
     </li>
   );
 }

@@ -11,7 +11,7 @@ export default function ContentWrapper() {
 
       {/* No todos/Completed tasks to show ----------------------->  */}
       {/* <-------------------------------------------> */}
-      <div className="flex flex-1 items-center justify-center text-white">
+      {/* <div className="flex flex-1 items-center justify-center text-white">
         <div className="flex flex-col items-center gap-2 text-center ">
           <img
             src="./calendar.png"
@@ -26,9 +26,9 @@ export default function ContentWrapper() {
             Add task to My Day
           </button>
         </div>
-      </div>
+      </div> */}
 
-      {/* <TodoContainer />
+      <TodoContainer />
       <CompletedContainer />
       <ul>
         <li className="h-[54px] border-b-2 border-b-gray-800"></li>
@@ -36,7 +36,7 @@ export default function ContentWrapper() {
         <li className="h-[54px] border-b-2 border-b-gray-800"></li>
         <li className="h-[54px] border-b-2 border-b-gray-800"></li>
         <li className="h-[54px] "></li>
-      </ul> */}
+      </ul>
       <AddTask />
     </div>
   );

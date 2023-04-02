@@ -7,12 +7,11 @@ export default function CompletedContainer() {
 
   return (
     <div className="mt-2">
-      <div className="mb-2 flex w-fit cursor-pointer items-center gap-2 rounded bg-gray-700 px-2 py-1 text-white hover:bg-gray-600">
-        {showTask ? (
-          <FiChevronDown onClick={() => setShowTask(false)} />
-        ) : (
-          <FiChevronRight onClick={() => setShowTask(true)} />
-        )}
+      <div
+        onClick={() => setShowTask(!showTask)}
+        className="mb-2 flex w-fit cursor-pointer items-center gap-2 rounded bg-gray-700 px-2 py-1 text-white hover:bg-gray-600"
+      >
+        {showTask ? <FiChevronDown /> : <FiChevronRight />}
         <h2>Completed</h2>
         <span>1</span>
       </div>

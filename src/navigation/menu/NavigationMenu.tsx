@@ -64,8 +64,15 @@ function NavigationMenu({
     list: <GiHamburgerMenu className="mr-4 cursor-pointer text-[20px]" />,
   };
 
+  const handleDropdown = () => {
+    setIsDropdownActive(!isDropdownActive);
+  };
+
   return (
-    <li className="relative  mx-2 my-2 flex items-center rounded  px-3 py-2 text-white hover:bg-gray-600">
+    <li
+      onContextMenu={() => handleDropdown()}
+      className="relative  mx-2 my-2 flex items-center rounded  px-3 py-2 text-white hover:bg-gray-600"
+    >
       <a
         href="#"
         className=" decoration-none flex w-full items-center text-white outline-none"
