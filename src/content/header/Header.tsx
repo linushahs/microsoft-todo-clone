@@ -5,6 +5,11 @@ import ThreedotsContainer from "./ThreedotsContainer";
 
 export default function Header() {
   const [isThreeDotsClicked, setIsThreeDotsClicked] = useState(false);
+
+  const handleThreeDots = (state: boolean) => {
+    setIsThreeDotsClicked(state);
+  };
+
   return (
     <div className="flex items-center justify-between  text-white">
       {/* left side --------------->  */}
@@ -20,10 +25,12 @@ export default function Header() {
         </button>
         <div className="relative">
           <BsThreeDots
-            className="text-[20px]"
+            className="cursor-pointer text-[20px]"
             onClick={() => setIsThreeDotsClicked(!isThreeDotsClicked)}
           />
-          {isThreeDotsClicked ? <ThreedotsContainer /> : null}
+          {isThreeDotsClicked ? (
+            <ThreedotsContainer handleThreeDots={handleThreeDots} />
+          ) : null}
         </div>
       </div>
     </div>
