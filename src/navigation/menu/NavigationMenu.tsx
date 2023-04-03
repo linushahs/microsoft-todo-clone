@@ -1,24 +1,16 @@
-import { ReactElement, useRef, useState } from "react";
-import { AiOutlineStar } from "react-icons/ai";
-import { BiTask } from "react-icons/bi";
-import {
-  BsChevronDown,
-  BsChevronUp,
-  BsReverseLayoutTextSidebarReverse,
-  BsSun,
-} from "react-icons/bs";
-import { GiHamburgerMenu } from "react-icons/gi";
-import { HiOutlineUser } from "react-icons/hi";
+import { useRef, useState } from "react";
+import { BsChevronDown, BsChevronUp, BsPrinter } from "react-icons/bs";
+import { HiOutlineMail } from "react-icons/hi";
 import DropdownMenu from "./DropdownMenu";
 
 function NavigationMenu({
-  iconTitle,
   text,
   count,
+  children,
 }: {
-  iconTitle: string;
   text: string;
   count: number;
+  children: React.ReactElement;
 }) {
   // ref variable -------------->
   const dropdownRef = useRef<null | HTMLUListElement>(null);
@@ -26,25 +18,14 @@ function NavigationMenu({
   //State variables
   const [isDropdownActive, setIsDropdownActive] = useState(false);
 
-  // icons are here ------------------>
-  // <---------------------------->
-  const icons: { [key: string]: ReactElement } = {
-    myday: <BsSun className="mr-4 cursor-pointer text-[20px]" />,
-    important: <AiOutlineStar className="mr-4 cursor-pointer text-[20px]" />,
-    planned: (
-      <BsReverseLayoutTextSidebarReverse className="mr-4 cursor-pointer text-[18px]" />
-    ),
-    assigned: <HiOutlineUser className="mr-4 cursor-pointer text-[20px]" />,
-    task: <BiTask className="mr-4 cursor-pointer text-[20px]" />,
-    started: <span className="mr-4 cursor-pointer text-[20px]">👋</span>,
-    list: <GiHamburgerMenu className="mr-4 cursor-pointer text-[20px]" />,
-  };
-
   // handleDropdown method goes here ------------->
   // <----------------------------------->
   const handleDropdown = () => {
     window.oncontextmenu = () => false;
     setIsDropdownActive(true);
+
+    // If mouse is clicked outside the dropdown element then
+    // dropdown will close
     document.addEventListener("mousedown", (event) => {
       let outSideClick = true;
       dropdownRef.current?.childNodes.forEach((elem) => {
@@ -67,7 +48,7 @@ function NavigationMenu({
           href="#"
           className=" decoration-none flex w-full items-center text-white outline-none"
         >
-          {icons[iconTitle]} <span>{text}</span>
+          {children} <span>{text}</span>
           <div className="right-side">
             {isDropdownActive ? (
               <BsChevronUp
@@ -101,10 +82,14 @@ function NavigationMenu({
       >
         <ul
           ref={dropdownRef}
-          className="absolute bottom-full left-5 z-10 w-[270px] list-none rounded border border-gray-600 bg-gray-800 text-white shadow-md"
+          className="absolute left-5 top-full z-10 w-[270px] list-none rounded border border-gray-600 bg-gray-900 text-white shadow-md"
         >
-          <DropdownMenu title="print" text="Print list" />
-          <DropdownMenu title="email" text="Email list" />
+          <DropdownMenu text="Print list">
+            <BsPrinter className="icon" />
+          </DropdownMenu>
+          <DropdownMenu text="Email list">
+            <HiOutlineMail className="icon" />
+          </DropdownMenu>
         </ul>
       </div>
 
