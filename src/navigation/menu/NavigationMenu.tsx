@@ -1,19 +1,15 @@
-import { useState, useEffect, useRef, ReactElement } from "react";
+import { ReactElement, useRef, useState } from "react";
+import { AiOutlineStar } from "react-icons/ai";
+import { BiTask } from "react-icons/bi";
 import {
-  BsSun,
-  BsReverseLayoutTextSidebarReverse,
-  BsPrinter,
-  BsPinAngle,
-  BsPlusLg,
   BsChevronDown,
   BsChevronUp,
+  BsReverseLayoutTextSidebarReverse,
+  BsSun,
 } from "react-icons/bs";
-import { AiOutlineStar } from "react-icons/ai";
-import { HiOutlineUser } from "react-icons/hi";
-import { BiTask, BiRename, BiUserPlus, BiBookAdd } from "react-icons/bi";
 import { GiHamburgerMenu } from "react-icons/gi";
+import { HiOutlineUser } from "react-icons/hi";
 import DropdownMenu from "./DropdownMenu";
-import { useReactToPrint } from "react-to-print";
 
 function NavigationMenu({
   iconTitle,
@@ -24,12 +20,14 @@ function NavigationMenu({
   text: string;
   count: number;
 }) {
-  const wrapperRef = useRef<null | HTMLLIElement>(null);
-  // useOutsideAlerter(wrapperRef);
+  // ref variable -------------->
+  const dropdownRef = useRef<null | HTMLUListElement>(null);
 
   //State variables
-  const [isActive, setIsActive] = useState(false);
   const [isDropdownActive, setIsDropdownActive] = useState(false);
+
+  // icons are here ------------------>
+  // <---------------------------->
   const icons: { [key: string]: ReactElement } = {
     myday: <BsSun className="mr-4 cursor-pointer text-[20px]" />,
     important: <AiOutlineStar className="mr-4 cursor-pointer text-[20px]" />,
@@ -42,46 +40,55 @@ function NavigationMenu({
     list: <GiHamburgerMenu className="mr-4 cursor-pointer text-[20px]" />,
   };
 
-  const handleDropdown = (e: React.MouseEvent<HTMLLIElement, MouseEvent>) => {
+  // handleDropdown method goes here ------------->
+  // <----------------------------------->
+  const handleDropdown = () => {
     window.oncontextmenu = () => false;
     setIsDropdownActive(true);
     document.addEventListener("mousedown", (event) => {
-      const outsideClick = wrapperRef.current != event.target;
-      if (outsideClick) setIsDropdownActive(false);
+      let outSideClick = true;
+      dropdownRef.current?.childNodes.forEach((elem) => {
+        if (elem == event.target) {
+          outSideClick = false;
+        }
+      });
+
+      if (outSideClick) setIsDropdownActive(false);
     });
   };
 
   return (
-    <li
-      onContextMenu={(e) => handleDropdown(e)}
-      ref={wrapperRef}
-      className="relative  mx-2 my-2 flex items-center rounded  px-3 py-2 text-white hover:bg-gray-600"
-    >
-      <a
-        href="#"
-        className=" decoration-none flex w-full items-center text-white outline-none"
+    <div className="relative">
+      <li
+        onContextMenu={() => handleDropdown()}
+        className=" mx-2 my-2 flex items-center rounded  px-3 py-2 text-white hover:bg-gray-600"
       >
-        {icons[iconTitle]} <span>{text}</span>
-        <div className="right-side">
-          {isDropdownActive ? (
-            <BsChevronUp
-              onClick={() => setIsDropdownActive(false)}
-              className="h-4 w-4 text-sm"
-            />
-          ) : (
-            <BsChevronDown
-              onClick={() => setIsDropdownActive(true)}
-              className="h-4 w-4 text-sm"
-            />
-          )}
-          <span
-            className="flex h-5 w-5 items-center justify-center rounded-full bg-gray-700 text-xs "
-            style={{ display: count ? "flex" : "none" }}
-          >
-            {count}
-          </span>
-        </div>
-      </a>
+        <a
+          href="#"
+          className=" decoration-none flex w-full items-center text-white outline-none"
+        >
+          {icons[iconTitle]} <span>{text}</span>
+          <div className="right-side">
+            {isDropdownActive ? (
+              <BsChevronUp
+                onClick={() => setIsDropdownActive(false)}
+                className="h-4 w-4 text-sm"
+              />
+            ) : (
+              <BsChevronDown
+                onClick={() => setIsDropdownActive(true)}
+                className="h-4 w-4 text-sm"
+              />
+            )}
+            <span
+              className="flex h-5 w-5 items-center justify-center rounded-full bg-gray-700 text-xs "
+              style={{ display: count ? "flex" : "none" }}
+            >
+              {count}
+            </span>
+          </div>
+        </a>
+      </li>
       {/* Dropdown section ------------------------------------------->  */}
       {/* <---------------------------------------------------------------> */}
       <div
@@ -92,14 +99,17 @@ function NavigationMenu({
           transition: "max-height 3s",
         }}
       >
-        <ul className="absolute bottom-full left-3 z-10 w-[270px] list-none rounded border border-gray-600 bg-gray-900 shadow-md">
+        <ul
+          ref={dropdownRef}
+          className="absolute bottom-full left-5 z-10 w-[270px] list-none rounded border border-gray-600 bg-gray-800 text-white shadow-md"
+        >
           <DropdownMenu title="print" text="Print list" />
           <DropdownMenu title="email" text="Email list" />
         </ul>
       </div>
 
       {/* Dropdown section ends here --------------------------------------> */}
-    </li>
+    </div>
   );
 }
 

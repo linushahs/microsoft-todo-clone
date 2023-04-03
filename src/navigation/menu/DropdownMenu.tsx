@@ -1,37 +1,9 @@
-import { useState } from "react";
-import {
-  BsSun,
-  BsReverseLayoutTextSidebarReverse,
-  BsPrinter,
-  BsPinAngle,
-  BsPlusLg,
-  BsChevronDown,
-  BsChevronUp,
-} from "react-icons/bs";
-import {
-  AiOutlineStar,
-  AiFillDelete,
-  AiOutlineSearch,
-  AiOutlineUserSwitch,
-} from "react-icons/ai";
-import {
-  HiOutlineUser,
-  HiOutlineMail,
-  HiOutlineDocumentDuplicate,
-} from "react-icons/hi";
-import {
-  BiTask,
-  BiRename,
-  BiUserPlus,
-  BiBookAdd,
-  BiHide,
-} from "react-icons/bi";
-import { GiHamburgerMenu } from "react-icons/gi";
-import { IoSettingsOutline } from "react-icons/io5";
 import React from "react";
+import { BsPrinter } from "react-icons/bs";
+import { HiOutlineMail } from "react-icons/hi";
 
-function DropdownMenu({ title, text }) {
-  const icons = {
+function DropdownMenu({ title, text }: { title: string; text: string }) {
+  const icons: { [key: string]: React.ReactElement } = {
     // rename: <BiRename className="icon" />,
     // share: <BiUserPlus className="icon" />,
     print: <BsPrinter className="icon" />,
@@ -43,7 +15,7 @@ function DropdownMenu({ title, text }) {
 
   return (
     <>
-      <li className="flex cursor-pointer items-center rounded border-b border-b-gray-600 px-4 py-3 last:border-0 hover:bg-gray-800">
+      <li className="flex cursor-pointer items-center rounded border-b border-b-gray-600 px-4 py-3 last:border-0 hover:bg-gray-700">
         {icons[title]}
         {text}
       </li>
