@@ -6,8 +6,9 @@ import {
   BsPrinter,
 } from "react-icons/bs";
 import { AiOutlineStar } from "react-icons/ai";
-import { FiMail } from "react-icons/fi";
+import { CgRename } from "react-icons/cg";
 import { AnimatePresence, motion } from "framer-motion";
+import { HiOutlineMail } from "react-icons/hi";
 
 export default function ThreedotsContainer({
   handleThreeDots,
@@ -45,12 +46,18 @@ export default function ThreedotsContainer({
         ref={containerRef}
         className="absolute right-0 top-full mt-2.5 min-w-[290px] rounded border border-gray-600 bg-gray-800 "
       >
+        {/* rename list ----------------------->  */}
+        <div className="flex cursor-pointer items-center gap-4 px-4 py-3 hover:bg-gray-700">
+          <CgRename className="text-[20px] text-gray-400" />
+          Rename List
+        </div>
+
         {/* sort by section ------------------>  */}
         {/* <-------------------------------------->  */}
         <div
           onMouseEnter={() => setShowSortByDropdown(true)}
-          onClick={() => setShowSortByDropdown(false)}
-          className="flex w-full cursor-pointer items-center  gap-4 px-4 py-3 hover:bg-gray-700"
+          onMouseLeave={() => setShowSortByDropdown(false)}
+          className="flex w-full cursor-pointer items-center gap-4  px-4 py-3  hover:bg-gray-700"
         >
           <BsArrowDownUp className="text-gray-400" />
           <h2>Sort by</h2>
@@ -69,15 +76,15 @@ export default function ThreedotsContainer({
               className="absolute right-full top-0 flex w-[290px] flex-col rounded border border-gray-600 bg-gray-800"
             >
               <li className="flex cursor-pointer items-center gap-3 px-4 py-3 hover:bg-gray-700">
-                <AiOutlineStar className="text-[20px] text-gray-400" />{" "}
+                <AiOutlineStar className="text-[20px] text-gray-400" />
                 Importance
               </li>
               <li className="flex cursor-pointer items-center gap-3 px-4 py-3 hover:bg-gray-700">
-                <BsArrowDownUp className="text-[17px] text-gray-400" />{" "}
+                <BsArrowDownUp className="text-[17px] text-gray-400" />
                 Alphabetically
               </li>
               <li className="flex cursor-pointer items-center gap-3 px-4 py-3 hover:bg-gray-700">
-                <BsCalendarPlus className="text-[17px] text-gray-400" />{" "}
+                <BsCalendarPlus className="text-[17px] text-gray-400" />
                 Creation Date
               </li>
             </motion.ul>
@@ -107,7 +114,7 @@ export default function ThreedotsContainer({
           <h2>Print List</h2>
         </div>
         <div className="flex w-full cursor-pointer items-center  gap-4 px-4 py-3 hover:bg-gray-700">
-          <FiMail className="text-[19px] text-gray-400" />
+          <HiOutlineMail className="text-[21px] text-gray-400" />
           <h2>Email List</h2>
         </div>
       </motion.div>
