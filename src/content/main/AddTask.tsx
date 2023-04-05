@@ -1,16 +1,17 @@
-import React, { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { addTodoTask } from "../../redux/todoTaskSlice";
+import { useEffect, useState } from "react";
 import { BsPlusLg } from "react-icons/bs";
+import { useAppDispatch } from "../../redux/hooks";
+import { addTodoTask } from "../../redux/todoTaskSlice";
 
 export default function AddTask() {
   const [taskInput, setTaskInput] = useState<string | undefined>("");
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
     document.onkeydown = (e) => {
       if (e.key === "Enter") {
         dispatch(addTodoTask({ id: new Date().toString(), task: taskInput }));
+        setTaskInput("");
       }
     };
   }, [taskInput]);

@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { AiFillStar, AiOutlineStar } from "react-icons/ai";
 import { BsCheck, BsCheckCircleFill } from "react-icons/bs";
+import { TaskListType } from "../../../redux/todoTaskSlice";
 
-export default function CompletedTask({ task }: { task: string }) {
+export default function CompletedTask({ data }: { data: TaskListType }) {
   const [starred, setStarred] = useState(false);
   const [showTick, setShowTick] = useState(false);
 
@@ -11,7 +12,7 @@ export default function CompletedTask({ task }: { task: string }) {
       <div className="flex items-center gap-4">
         <BsCheckCircleFill className="h-5 w-5 text-red-400" />
 
-        <h2 className=" text-gray-400 line-through">{task}</h2>
+        <h2 className=" text-gray-400 line-through">{data.task}</h2>
       </div>
       {starred ? (
         <AiFillStar className="text-[22px]" onClick={() => setStarred(false)} />

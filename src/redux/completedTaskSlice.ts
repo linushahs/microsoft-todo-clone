@@ -1,18 +1,18 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { RootState } from "./store";
 
-export interface TaskListType {
+interface TaskListType {
   id: string;
   task: string;
 }
 
-const todoTaskSlice = createSlice({
-  name: "todoTask",
+const completedTaskSlice = createSlice({
+  name: "completedTask",
   initialState: {
     taskList: <TaskListType[]>[],
   },
   reducers: {
-    addTodoTask: (state, action) => {
+    addCompletedTask: (state, action) => {
       state.taskList = [
         ...state.taskList,
         {
@@ -21,7 +21,7 @@ const todoTaskSlice = createSlice({
         },
       ];
     },
-    deleteTodoTask: (state, action) => {
+    deleteCompletedTask: (state, action) => {
       state.taskList = state.taskList.filter(
         (task) => task.id !== action.payload.id
       );
@@ -29,6 +29,7 @@ const todoTaskSlice = createSlice({
   },
 });
 
-export const { addTodoTask, deleteTodoTask } = todoTaskSlice.actions;
+export const { addCompletedTask, deleteCompletedTask } =
+  completedTaskSlice.actions;
 
-export default todoTaskSlice.reducer;
+export default completedTaskSlice.reducer;
