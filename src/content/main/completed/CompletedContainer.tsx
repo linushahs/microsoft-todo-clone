@@ -20,7 +20,11 @@ export default function CompletedContainer() {
 
       <div>
         {showTask ? (
-          tasks.map((data) => <CompletedTask data={data} key={data.id} />)
+          <div className="flex flex-col gap-1">
+            {tasks.map((data) => (
+              <CompletedTask data={data} key={data.id} />
+            ))}
+          </div>
         ) : (
           <div className="h-[54px] border-b-2 border-t-2 border-gray-800"></div>
         )}

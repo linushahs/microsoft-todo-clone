@@ -11,6 +11,11 @@ export default function TodoTask({ data }: { data: TaskListType }) {
   const [showTick, setShowTick] = useState(false);
   const dispatch = useAppDispatch();
 
+  const handleCompletion = () => {
+    dispatch(addCompletedTask(data));
+    dispatch(deleteTodoTask(data));
+  };
+
   return (
     <li className="flex h-[54px] cursor-pointer items-center justify-between rounded-md bg-gray-700 p-4 text-white hover:bg-gray-600">
       <div className="flex items-center gap-4">
@@ -18,7 +23,7 @@ export default function TodoTask({ data }: { data: TaskListType }) {
           className="relative h-5 w-5 rounded-full border-2 border-white"
           onMouseEnter={() => setShowTick(true)}
           onMouseLeave={() => setShowTick(false)}
-          onClick={() => dispatch(addCompletedTask(data))}
+          onClick={() => handleCompletion()}
         >
           {showTick ? <BsCheck className="absolute top-[1px]" /> : null}
         </span>
