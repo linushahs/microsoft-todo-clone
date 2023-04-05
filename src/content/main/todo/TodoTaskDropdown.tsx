@@ -20,7 +20,6 @@ export default function TodoTaskDropdown({
 }) {
   const containerRef = useRef<HTMLDivElement>(null);
   const { x, y } = dropdownDimension;
-  console.log(x, y);
 
   useEffect(() => {
     // If mouse is clicked outside the dropdown element then
