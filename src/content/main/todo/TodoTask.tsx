@@ -11,6 +11,7 @@ export default function TodoTask({ data }: { data: TaskListType }) {
   const [starred, setStarred] = useState(false);
   const [showTick, setShowTick] = useState(false);
   const [showTaskDropdown, setShowTaskDropdown] = useState(false);
+  const [dropdownDimension, setDropdownDimension] = useState({ x: 0, y: 0 });
   const dispatch = useAppDispatch();
 
   const handleCompletion = () => {
@@ -18,8 +19,10 @@ export default function TodoTask({ data }: { data: TaskListType }) {
     dispatch(deleteTodoTask(data));
   };
 
-  const handleDropdown = () => {
+  const handleDropdown = (e: React.MouseEvent<HTMLLIElement>) => {
+    console.log(e.clientX, e.clientY);
     window.oncontextmenu = () => false;
+    setDropdownDimension({ x: e.clientX, y: e.clientY });
     setShowTaskDropdown(!showTaskDropdown);
   };
 
@@ -29,8 +32,8 @@ export default function TodoTask({ data }: { data: TaskListType }) {
 
   return (
     <li
-      onContextMenu={() => handleDropdown()}
-      className="relative flex h-[54px] cursor-pointer items-center justify-between rounded-md bg-gray-700 p-4 text-white hover:bg-gray-600"
+      onContextMenu={(e) => handleDropdown(e)}
+      className="flex h-[54px] cursor-pointer items-center justify-between rounded-md bg-gray-700 p-4 text-white hover:bg-gray-600"
     >
       <div className="flex items-center gap-4">
         <span
@@ -64,7 +67,10 @@ export default function TodoTask({ data }: { data: TaskListType }) {
       </div>
 
       {showTaskDropdown ? (
-        <TodoTaskDropdown closeDropdown={closeDropdown} />
+        <TodoTaskDropdown
+          closeDropdown={closeDropdown}
+          dropdownDimension={dropdownDimension}
+        />
       ) : null}
     </li>
   );

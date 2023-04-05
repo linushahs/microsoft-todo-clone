@@ -6,12 +6,21 @@ import { TbCalendarDue, TbCalendarPlus, TbCalendarTime } from "react-icons/tb";
 import { HiOutlineCheckCircle } from "react-icons/hi";
 import { RiDeleteBin6Line } from "react-icons/ri";
 
+interface DimensionType {
+  x: number;
+  y: number;
+}
+
 export default function TodoTaskDropdown({
   closeDropdown,
+  dropdownDimension,
 }: {
   closeDropdown: Function;
+  dropdownDimension: DimensionType;
 }) {
   const containerRef = useRef<HTMLDivElement>(null);
+  const { x, y } = dropdownDimension;
+  console.log(x, y);
 
   useEffect(() => {
     // If mouse is clicked outside the dropdown element then
@@ -36,7 +45,8 @@ export default function TodoTaskDropdown({
         exit={{ opacity: 0, y: "-10%" }}
         transition={{ duration: 0.3, type: "spring", stiffness: 100 }}
         ref={containerRef}
-        className="absolute right-0 top-full mt-2.5 flex min-w-[290px] flex-col rounded border border-gray-600 bg-gray-800 "
+        style={{ top: `${y + 10}px`, left: `${x}px` }}
+        className="absolute  z-20 mt-2.5 flex min-w-[290px] flex-col rounded border border-gray-600 bg-gray-800 "
       >
         {/* Add to My Day list ----------------------->  */}
         {/* <-------------------------------------------->  */}
