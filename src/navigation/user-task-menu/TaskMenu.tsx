@@ -1,18 +1,15 @@
-import { AnimatePresence, motion } from "framer-motion";
 import { useRef, useState } from "react";
-import { BsPrinter } from "react-icons/bs";
-import { HiOutlineMail, HiUsers } from "react-icons/hi";
-import { CgRename } from "react-icons/cg";
 import TaskDropdown from "./TaskDropdown";
-import { BiDuplicate } from "react-icons/bi";
 
 function TaskMenu({
   text,
   count,
+  id,
   children,
 }: {
   text: string;
   count: number;
+  id: string;
   children: React.ReactElement;
 }) {
   // ref variable -------------->
@@ -64,8 +61,7 @@ function TaskMenu({
       </li>
       {/* Dropdown section ------------------------------------------->  */}
       {/* <---------------------------------------------------------------> */}
-      {isDropdownActive ? <TaskDropdown /> : null}
-      {/* Dropdown section ends here --------------------------------------> */}
+      {isDropdownActive ? <TaskDropdown id={id} /> : null}
     </div>
   );
 }

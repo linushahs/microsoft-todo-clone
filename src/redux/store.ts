@@ -1,11 +1,13 @@
 import { configureStore } from "@reduxjs/toolkit";
 import todoReducer from "./todoTaskSlice";
 import completedTaskReducer from "./completedTaskSlice";
+import taskMenuReducer from "./taskMenuSlice";
 
 export const store = configureStore({
   reducer: {
     todoTasks: todoReducer,
     completedTasks: completedTaskReducer,
+    taskMenus: taskMenuReducer,
   },
 });
 

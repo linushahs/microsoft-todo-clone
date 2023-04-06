@@ -1,22 +1,23 @@
-import React from "react";
-import { BsPlusLg } from "react-icons/bs";
-import { BiBookAdd } from "react-icons/bi";
-import TaskMenu from "./TaskMenu";
 import { AiOutlineBars } from "react-icons/ai";
+import TaskMenu from "./TaskMenu";
+import { useAppSelector } from "../../redux/hooks";
 
 function Lists() {
+  const menus = useAppSelector((state) => state.taskMenus.menuList);
+
   return (
     <div className="flex flex-1 flex-col">
       <ul className="w-full">
-        <TaskMenu text="Getting Started" count={2}>
-          <AiOutlineBars className="mr-4 cursor-pointer text-[18px]" />
-        </TaskMenu>
-        <TaskMenu text="Vidyarthi WebApp" count={2}>
-          <AiOutlineBars className="mr-4 cursor-pointer text-[20px]" />
-        </TaskMenu>
-        <TaskMenu text="React Projects" count={2}>
-          <AiOutlineBars className="mr-4 cursor-pointer text-[20px]" />
-        </TaskMenu>
+        {menus.map((menu) => (
+          <TaskMenu
+            text={menu.menuTitle}
+            count={menus.length}
+            id={menu.id}
+            key={menu.id}
+          >
+            <AiOutlineBars className="mr-4 cursor-pointer text-[18px]" />
+          </TaskMenu>
+        ))}
       </ul>
     </div>
   );

@@ -5,9 +5,12 @@ import { HiOutlineMail, HiUsers } from "react-icons/hi";
 import { CgRename } from "react-icons/cg";
 import { BiDuplicate } from "react-icons/bi";
 import { RiDeleteBin6Line } from "react-icons/ri";
+import { useAppDispatch } from "../../redux/hooks";
+import { deleteTaskMenu } from "../../redux/taskMenuSlice";
 
-function TaskDropdown() {
+function TaskDropdown({ id }: { id: string }) {
   const containerRef = useRef(null);
+  const dispatch = useAppDispatch();
 
   return (
     <AnimatePresence>
@@ -56,7 +59,12 @@ function TaskDropdown() {
 
         {/* Delete Task ----------------------->  */}
         {/* <-------------------------------------------->  */}
-        <div className="flex w-full cursor-pointer items-center gap-4  border-t border-t-gray-600  px-4 py-3 text-red-600 hover:bg-gray-700">
+        <div
+          onClick={() =>
+            dispatch(deleteTaskMenu({ id, menuTitle: "Untitled" }))
+          }
+          className="flex w-full cursor-pointer items-center gap-4  border-t border-t-gray-600  px-4 py-3 text-red-600 hover:bg-gray-700"
+        >
           <RiDeleteBin6Line className="text-[21px] " />
           <h2>Delete Task</h2>
         </div>
