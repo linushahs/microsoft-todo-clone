@@ -1,5 +1,10 @@
+import { AnimatePresence, motion } from "framer-motion";
 import { useRef, useState } from "react";
-import { BsChevronDown, BsChevronUp } from "react-icons/bs";
+import { BsPrinter } from "react-icons/bs";
+import { HiOutlineMail, HiUsers } from "react-icons/hi";
+import { CgRename } from "react-icons/cg";
+import TaskDropdown from "./TaskDropdown";
+import { BiDuplicate } from "react-icons/bi";
 
 function TaskMenu({
   text,
@@ -59,25 +64,7 @@ function TaskMenu({
       </li>
       {/* Dropdown section ------------------------------------------->  */}
       {/* <---------------------------------------------------------------> */}
-      {/* <AnimatePresence>
-        {isDropdownActive ? (
-          <motion.ul
-            ref={dropdownRef}
-            initial={{ opacity: 0, y: "-10%", zIndex: 50 }}
-            animate={{ opacity: 1, y: "0%", zIndex: 50 }}
-            transition={{ duration: 0.2, type: "spring", stiffness: 100 }}
-            className="absolute left-5  w-[270px] list-none rounded border border-gray-600 bg-gray-900 text-white shadow-md"
-          >
-            <DropdownMenu text="Print list">
-              <BsPrinter className="icon" />
-            </DropdownMenu>
-            <DropdownMenu text="Email list">
-              <HiOutlineMail className="icon" />
-            </DropdownMenu>
-          </motion.ul>
-        ) : null}
-      </AnimatePresence> */}
-
+      {isDropdownActive ? <TaskDropdown /> : null}
       {/* Dropdown section ends here --------------------------------------> */}
     </div>
   );

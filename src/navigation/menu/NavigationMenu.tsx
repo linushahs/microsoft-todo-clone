@@ -1,8 +1,8 @@
+import { AnimatePresence, motion } from "framer-motion";
 import { useRef, useState } from "react";
-import { BsChevronDown, BsChevronUp, BsPrinter } from "react-icons/bs";
+import { BsPrinter } from "react-icons/bs";
 import { HiOutlineMail } from "react-icons/hi";
 import DropdownMenu from "./DropdownMenu";
-import { AnimatePresence, motion } from "framer-motion";
 
 function NavigationMenu({
   text,
@@ -82,13 +82,13 @@ function NavigationMenu({
             initial={{ opacity: 0, y: "-10%", zIndex: 50 }}
             animate={{ opacity: 1, y: "0%", zIndex: 50 }}
             transition={{ duration: 0.2, type: "spring", stiffness: 100 }}
-            className="absolute left-5  w-[270px] list-none rounded border border-gray-600 bg-gray-900 text-white shadow-md"
+            className="absolute left-4  w-[275px] list-none rounded border border-gray-600 bg-gray-800 text-white shadow-md"
           >
             <DropdownMenu text="Print list">
-              <BsPrinter className="mr-3 text-[18px]" />
+              <BsPrinter className="mr-3 text-[18px] text-gray-400" />
             </DropdownMenu>
             <DropdownMenu text="Email list">
-              <HiOutlineMail className="mr-3 text-[18px]" />
+              <HiOutlineMail className="mr-3 text-[19px] text-gray-400" />
             </DropdownMenu>
           </motion.ul>
         ) : null}
