@@ -1,10 +1,8 @@
-import { useState } from "react";
-import "./Navigation.css";
 import User from "./account/User";
-import Search from "./search/Search";
-import Lists from "./list/Lists";
 import NavigationBlock from "./menu/NavigationBlock";
-import React from "react";
+import Search from "./search/Search";
+import AddTaskMenu from "./user-task-menu/AddTaskMenu";
+import TaskBlock from "./user-task-menu/TaskBlock";
 
 function Navigation() {
   return (
@@ -16,7 +14,8 @@ function Navigation() {
       <NavigationBlock />
       <hr className="border-[0.5px] border-gray-700" />
       {/* List -- blocks --------------------------------------->  */}
-      <Lists />
+      <TaskBlock />
+      <AddTaskMenu />
     </div>
   );
 }

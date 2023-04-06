@@ -5,10 +5,11 @@ import { BiTask } from "react-icons/bi";
 import {
   BsChevronDown,
   BsChevronUp,
+  BsLayoutThreeColumns,
   BsReverseLayoutTextSidebarReverse,
   BsSun,
 } from "react-icons/bs";
-import { GiHamburgerMenu } from "react-icons/gi";
+import { TiDocumentText } from "react-icons/ti";
 import { HiOutlineUser } from "react-icons/hi";
 
 function NavigationBlock() {
@@ -21,7 +22,7 @@ function NavigationBlock() {
         <AiOutlineStar className="mr-4 cursor-pointer text-[20px]" />
       </NavigationMenu>
       <NavigationMenu text="Planned" count={2}>
-        <BsReverseLayoutTextSidebarReverse className="mr-4 cursor-pointer text-[18px]" />
+        <TiDocumentText className=" mr-4 cursor-pointer text-[20px]" />
       </NavigationMenu>
       <NavigationMenu text="Assigned" count={3}>
         <HiOutlineUser className="mr-4 cursor-pointer text-[20px]" />
