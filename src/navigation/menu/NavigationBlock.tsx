@@ -16,7 +16,7 @@ function NavigationBlock() {
   return (
     <ul className=" w-full list-none ">
       <NavigationMenu text="My Day" count={2}>
-        <BsSun className="mr-4 cursor-pointer text-[20px]" />
+        <BsSun className="mr-4 cursor-pointer text-[19px]" />
       </NavigationMenu>
       <NavigationMenu text="Important" count={0}>
         <AiOutlineStar className="mr-4 cursor-pointer text-[20px]" />

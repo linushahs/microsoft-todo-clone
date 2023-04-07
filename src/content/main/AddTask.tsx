@@ -7,14 +7,18 @@ export default function AddTask() {
   const [taskInput, setTaskInput] = useState<string | undefined>("");
   const dispatch = useAppDispatch();
 
-  useEffect(() => {
-    document.onkeydown = (e) => {
-      if (e.key === "Enter") {
+  const handleTaskInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setTaskInput(e.target.value);
+
+    document.onkeydown = (event) => {
+      if (event.key === "Enter") {
         dispatch(addTodoTask({ id: new Date().toString(), task: taskInput }));
         setTaskInput("");
       }
     };
-  }, [taskInput]);
+
+    // return () => document.removeEventListener("onkeydown", handleKeyDown);
+  };
 
   return (
     <div className="flex items-center gap-3 rounded-md bg-gray-800 px-4 py-3 text-white">
@@ -23,7 +27,7 @@ export default function AddTask() {
         type="text"
         placeholder="Add a Task"
         value={taskInput}
-        onChange={(e) => setTaskInput(e.target.value)}
+        onChange={(e) => handleTaskInput(e)}
         className="w-full bg-transparent outline-none placeholder:text-white"
       />
     </div>

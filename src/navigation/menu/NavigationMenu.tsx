@@ -43,35 +43,24 @@ function NavigationMenu({
     <div className="relative">
       <li
         onContextMenu={() => handleDropdown()}
-        className=" mx-2 my-2 flex items-center rounded  px-3 py-2 text-white hover:bg-gray-600"
+        className=" mx-2 my-2 flex rounded  px-3 py-2 text-white hover:bg-gray-600"
       >
         <a
           href="#"
           className=" decoration-none flex w-full items-center text-white outline-none"
         >
           {children} <span>{text}</span>
-          {/* right side of the menu ------------------- >  */}
-          {/* <------------------------------------------->  */}
-          <div className="ml-auto flex items-center gap-2">
-            {/* {isDropdownActive ? (
-              <BsChevronUp
-                onClick={() => setIsDropdownActive(false)}
-                className="h-4 w-4 text-sm"
-              />
-            ) : (
-              <BsChevronDown
-                onClick={() => setIsDropdownActive(true)}
-                className="h-4 w-4 text-sm"
-              />
-            )} */}
-            <span
-              className="mt-[1px] flex h-5 w-5 items-center justify-center rounded-full bg-gray-700 text-xs "
-              style={{ display: count ? "flex" : "none" }}
-            >
-              {count}
-            </span>
-          </div>
         </a>
+        {/* right side of the menu ------------------- >  */}
+        {/* <------------------------------------------->  */}
+        <div className="ml-auto flex items-end gap-2">
+          <span
+            className="mt-[1px] flex h-5 w-5 items-center justify-center rounded-full bg-gray-700 text-xs "
+            style={{ display: count ? "flex" : "none" }}
+          >
+            {count}
+          </span>
+        </div>
       </li>
       {/* Dropdown section ------------------------------------------->  */}
       {/* <---------------------------------------------------------------> */}
