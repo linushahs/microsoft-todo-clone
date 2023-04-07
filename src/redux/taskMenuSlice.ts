@@ -1,18 +1,19 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 export interface MenuListType {
-  id: string;
+  id: number;
   menuTitle: string;
 }
 
 const taskMenuSlice = createSlice({
   name: "taskMenu",
   initialState: {
-    menuList: <MenuListType[]>[
-      { id: new Date().toString(), menuTitle: "Get Started" },
-    ],
+    menuList: <MenuListType[]>[{ id: 0, menuTitle: "Get Started" }],
   },
   reducers: {
+    renameTaskMenu: (state, { payload }) => {
+      state.menuList[payload.id]["menuTitle"] = payload.menuTitle;
+    },
     addTaskMenu: (state, action) => {
       state.menuList = [
         ...state.menuList,
@@ -30,6 +31,7 @@ const taskMenuSlice = createSlice({
   },
 });
 
-export const { addTaskMenu, deleteTaskMenu } = taskMenuSlice.actions;
+export const { renameTaskMenu, addTaskMenu, deleteTaskMenu } =
+  taskMenuSlice.actions;
 
 export default taskMenuSlice.reducer;

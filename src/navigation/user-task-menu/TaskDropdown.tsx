@@ -8,7 +8,7 @@ import { RiDeleteBin6Line } from "react-icons/ri";
 import { useAppDispatch } from "../../redux/hooks";
 import { deleteTaskMenu } from "../../redux/taskMenuSlice";
 
-function TaskDropdown({ id }: { id: string }) {
+function TaskDropdown({ id }: { id: number }) {
   const containerRef = useRef(null);
   const dispatch = useAppDispatch();
 
@@ -60,9 +60,7 @@ function TaskDropdown({ id }: { id: string }) {
         {/* Delete Task ----------------------->  */}
         {/* <-------------------------------------------->  */}
         <div
-          onClick={() =>
-            dispatch(deleteTaskMenu({ id, menuTitle: "Untitled" }))
-          }
+          onClick={() => dispatch(deleteTaskMenu({ id, menuTitle: "" }))}
           className="flex w-full cursor-pointer items-center gap-4  border-t border-t-gray-600  px-4 py-3 text-red-600 hover:bg-gray-700"
         >
           <RiDeleteBin6Line className="text-[21px] " />

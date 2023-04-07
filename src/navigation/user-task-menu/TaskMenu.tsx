@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
-import TaskDropdown from "./TaskDropdown";
 import { useAppDispatch } from "../../redux/hooks";
-import { addTaskMenu } from "../../redux/taskMenuSlice";
+import { renameTaskMenu } from "../../redux/taskMenuSlice";
+import TaskDropdown from "./TaskDropdown";
 
 function TaskMenu({
   text,
@@ -11,7 +11,7 @@ function TaskMenu({
 }: {
   text: string;
   count: number;
-  id: string;
+  id: number;
   children: React.ReactElement;
 }) {
   // ref variable -------------->
@@ -24,7 +24,7 @@ function TaskMenu({
   const [selectMenuInput, setSelectMenuInput] = useState(false);
   const [menuInput, setMenuInput] = useState("Untitled");
 
-  //useEffect() method
+  //useEffect() method ---------------->
   useEffect(() => {
     setSelectMenuInput(true);
     menuRef.current?.focus();
@@ -33,9 +33,7 @@ function TaskMenu({
   //handleMenuInput() method -------------->
   const handleMenuInput = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key == "Enter") {
-      dispatch(
-        addTaskMenu({ id: new Date().toString(), menuTitle: menuInput })
-      );
+      dispatch(renameTaskMenu({ id, menuTitle: menuInput }));
       setSelectMenuInput(false);
     }
   };
