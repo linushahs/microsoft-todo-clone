@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { BsPlusLg } from "react-icons/bs";
 import { useAppDispatch } from "../../redux/hooks";
 import { addTodoTask } from "../../redux/todoTaskSlice";
@@ -7,17 +7,13 @@ export default function AddTask() {
   const [taskInput, setTaskInput] = useState<string | undefined>("");
   const dispatch = useAppDispatch();
 
-  const handleTaskInput = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setTaskInput(e.target.value);
-
-    document.onkeydown = (event) => {
-      if (event.key === "Enter") {
+  const handleTaskInput = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter") {
+      if (taskInput) {
         dispatch(addTodoTask({ id: new Date().toString(), task: taskInput }));
         setTaskInput("");
       }
-    };
-
-    // return () => document.removeEventListener("onkeydown", handleKeyDown);
+    }
   };
 
   return (
@@ -27,8 +23,9 @@ export default function AddTask() {
         type="text"
         placeholder="Add a Task"
         value={taskInput}
-        onChange={(e) => handleTaskInput(e)}
-        className="w-full bg-transparent outline-none placeholder:text-white"
+        onChange={(e) => setTaskInput(e.target.value)}
+        onKeyDown={(e) => handleTaskInput(e)}
+        className="w-full bg-transparent outline-none placeholder:text-white focus:placeholder:text-transparent"
       />
     </div>
   );

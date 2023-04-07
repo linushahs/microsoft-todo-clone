@@ -1,5 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import TaskDropdown from "./TaskDropdown";
+import { useAppDispatch } from "../../redux/hooks";
+import { addTaskMenu } from "../../redux/taskMenuSlice";
 
 function TaskMenu({
   text,
@@ -15,11 +17,12 @@ function TaskMenu({
   // ref variable -------------->
   const dropdownRef = useRef<null | HTMLUListElement>(null);
   const menuRef = useRef<null | HTMLInputElement>(null);
-  const [selectMenuInput, setSelectMenuInput] = useState(false);
-  const [menuInput, setMenuInput] = useState("Untitled");
+  const dispatch = useAppDispatch();
 
   //State variables
   const [isDropdownActive, setIsDropdownActive] = useState(false);
+  const [selectMenuInput, setSelectMenuInput] = useState(false);
+  const [menuInput, setMenuInput] = useState("Untitled");
 
   //useEffect() method
   useEffect(() => {
@@ -28,8 +31,13 @@ function TaskMenu({
   }, []);
 
   //handleMenuInput() method -------------->
-  const handleMenuInput = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setMenuInput(e.target.value);
+  const handleMenuInput = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key == "Enter") {
+      dispatch(
+        addTaskMenu({ id: new Date().toString(), menuTitle: menuInput })
+      );
+      setSelectMenuInput(false);
+    }
   };
 
   // handleDropdown method goes here ------------->
@@ -56,7 +64,9 @@ function TaskMenu({
     <div className="relative">
       <li
         onContextMenu={() => handleDropdown()}
-        className="mx-2 my-2 flex items-center rounded  px-3 py-2 text-white hover:bg-gray-600"
+        className={`mx-2 my-2 flex items-center rounded  px-3 py-2 text-white ${
+          selectMenuInput ? "" : "hover:bg-gray-600"
+        }`}
       >
         <a
           href="#"
@@ -68,9 +78,9 @@ function TaskMenu({
               type="text"
               ref={menuRef}
               value={menuInput}
-              className="w-[160px] rounded border border-b border-gray-700 border-b-white bg-transparent px-2 py-1 outline-none
-              "
-              onChange={(e) => handleMenuInput(e)}
+              className="w-[160px] rounded border border-b border-gray-700 border-b-white bg-transparent px-2 py-1 outline-none"
+              onChange={(e) => setMenuInput(e.target.value)}
+              onKeyDown={(e) => handleMenuInput(e)}
             />
           ) : (
             <span>{text}</span>
