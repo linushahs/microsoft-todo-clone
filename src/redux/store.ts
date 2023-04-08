@@ -17,3 +17,5 @@ export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
 
 store.subscribe(() => console.log("Updated state", store.getState()));
+
+//Today I researched about database (MySQL or PostgreSQL)
