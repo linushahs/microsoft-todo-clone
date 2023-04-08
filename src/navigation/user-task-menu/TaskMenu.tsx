@@ -15,7 +15,7 @@ function TaskMenu({
   children: React.ReactElement;
 }) {
   // ref variable -------------->
-  const dropdownRef = useRef<null | HTMLUListElement>(null);
+  const containerRef = useRef<HTMLDivElement | null>(null);
   const menuRef = useRef<null | HTMLInputElement>(null);
   const dispatch = useAppDispatch();
 
@@ -26,6 +26,7 @@ function TaskMenu({
 
   //useEffect() method ---------------->
   useEffect(() => {
+    if (text === "Get Started") return;
     setSelectMenuInput(true);
     menuRef.current?.focus();
   }, []);
@@ -44,11 +45,10 @@ function TaskMenu({
     window.oncontextmenu = () => false;
     setIsDropdownActive(!isDropdownActive);
 
-    // If mouse is clicked outside the dropdown element then
-    // dropdown will close
-    document.addEventListener("mousedown", (event) => {
+    document.addEventListener("mousedown", (event: MouseEvent) => {
       let outSideClick = true;
-      dropdownRef.current?.childNodes.forEach((elem) => {
+
+      containerRef.current?.childNodes.forEach((elem) => {
         if (elem == event.target) {
           outSideClick = false;
         }
@@ -95,7 +95,9 @@ function TaskMenu({
       </li>
       {/* Dropdown section ------------------------------------------->  */}
       {/* <---------------------------------------------------------------> */}
-      {isDropdownActive ? <TaskDropdown id={id} /> : null}
+      {isDropdownActive ? (
+        <TaskDropdown id={id} setIsDropdownActive={setIsDropdownActive} />
+      ) : null}
     </div>
   );
 }

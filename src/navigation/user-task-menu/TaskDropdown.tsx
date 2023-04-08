@@ -1,5 +1,5 @@
 import { AnimatePresence, motion } from "framer-motion";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { BsPrinter } from "react-icons/bs";
 import { HiOutlineMail, HiUsers } from "react-icons/hi";
 import { CgRename } from "react-icons/cg";
@@ -8,9 +8,35 @@ import { RiDeleteBin6Line } from "react-icons/ri";
 import { useAppDispatch } from "../../redux/hooks";
 import { deleteTaskMenu } from "../../redux/taskMenuSlice";
 
-function TaskDropdown({ id }: { id: number }) {
-  const containerRef = useRef(null);
+function TaskDropdown({
+  id,
+  setIsDropdownActive,
+}: {
+  id: number;
+  setIsDropdownActive: Function;
+}) {
+  const containerRef = useRef<HTMLDivElement | null>(null);
   const dispatch = useAppDispatch();
+
+  // useEffect(() => {
+  //   const handleMouseDown = (event: MouseEvent) => {
+  //     let outSideClick = true;
+
+  //     containerRef.current?.childNodes.forEach((elem) => {
+  //       if (elem == event.target) {
+  //         outSideClick = false;
+  //       }
+  //     });
+
+  //     if (outSideClick) setIsDropdownActive(false);
+  //   };
+
+  //   // If mouse is clicked outside the dropdown element then
+  //   // dropdown will close
+  //   document.addEventListener("mousedown", handleMouseDown);
+
+  //   return document.removeEventListener("mousedown", handleMouseDown);
+  // }, []);
 
   return (
     <AnimatePresence>
