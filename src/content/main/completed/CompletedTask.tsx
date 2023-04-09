@@ -1,9 +1,12 @@
 import { useState } from "react";
 import { AiFillStar, AiOutlineStar } from "react-icons/ai";
 import { BsCheck, BsCheckCircleFill } from "react-icons/bs";
-import { TaskListType, addTodoTask } from "../../../redux/todoTaskSlice";
-import { useAppDispatch } from "../../../redux/hooks";
-import { deleteCompletedTask } from "../../../redux/completedTaskSlice";
+import {
+  TaskListType,
+  addTodoTask,
+} from "../../../../redux-context/todoTaskSlice";
+import { useAppDispatch } from "../../../../redux-context/hooks";
+import { deleteCompletedTask } from "../../../../redux-context/completedTaskSlice";
 
 export default function CompletedTask({ data }: { data: TaskListType }) {
   const [starred, setStarred] = useState(false);

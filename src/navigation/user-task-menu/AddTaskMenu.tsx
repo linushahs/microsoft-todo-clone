@@ -1,8 +1,8 @@
 import React from "react";
 import { BiBookAdd } from "react-icons/bi";
 import { BsPlusLg } from "react-icons/bs";
-import { useAppDispatch, useAppSelector } from "../../redux/hooks";
-import { addTaskMenu } from "../../redux/taskMenuSlice";
+import { useAppDispatch, useAppSelector } from "../../../redux-context/hooks";
+import { addTaskMenu } from "../../../redux-context/taskMenuSlice";
 
 export default function AddTaskMenu() {
   const dispatch = useAppDispatch();

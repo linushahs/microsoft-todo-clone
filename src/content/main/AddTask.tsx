@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { BsPlusLg } from "react-icons/bs";
-import { useAppDispatch } from "../../redux/hooks";
-import { addTodoTask } from "../../redux/todoTaskSlice";
+import { useAppDispatch } from "../../../redux-context/hooks";
+import { addTodoTask } from "../../../redux-context/todoTaskSlice";
 
 export default function AddTask() {
   const [taskInput, setTaskInput] = useState<string | undefined>("");

@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { AiFillStar, AiOutlineStar, AiFillDelete } from "react-icons/ai";
 import { BsCheck } from "react-icons/bs";
-import { useAppDispatch } from "../../../redux/hooks";
-import { deleteTodoTask } from "../../../redux/todoTaskSlice";
-import { addCompletedTask } from "../../../redux/completedTaskSlice";
-import { TaskListType } from "../../../redux/todoTaskSlice";
+import { useAppDispatch } from "../../../../redux-context/hooks";
+import { deleteTodoTask } from "../../../../redux-context/todoTaskSlice";
+import { addCompletedTask } from "../../../../redux-context/completedTaskSlice";
+import { TaskListType } from "../../../../redux-context/todoTaskSlice";
 import TodoTaskDropdown from "./TodoTaskDropdown";
 
 export default function TodoTask({ data }: { data: TaskListType }) {

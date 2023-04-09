@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
-import { useAppDispatch } from "../../redux/hooks";
-import { renameTaskMenu } from "../../redux/taskMenuSlice";
+import { useAppDispatch } from "../../../redux-context/hooks";
+import { renameTaskMenu } from "../../../redux-context/taskMenuSlice";
 import TaskDropdown from "./TaskDropdown";
 
 function TaskMenu({

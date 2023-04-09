@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { FiChevronDown, FiChevronRight } from "react-icons/fi";
 import CompletedTask from "./CompletedTask";
-import { useAppSelector } from "../../../redux/hooks";
+import { useAppSelector } from "../../../../redux-context/hooks";
 
 export default function CompletedContainer() {
   const [showTask, setShowTask] = useState(true);

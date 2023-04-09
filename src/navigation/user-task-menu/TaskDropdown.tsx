@@ -4,8 +4,8 @@ import { BsPrinter } from "react-icons/bs";
 import { CgRename } from "react-icons/cg";
 import { HiOutlineMail, HiUsers } from "react-icons/hi";
 import { RiDeleteBin6Line } from "react-icons/ri";
-import { useAppDispatch } from "../../redux/hooks";
-import { deleteTaskMenu } from "../../redux/taskMenuSlice";
+import { useAppDispatch } from "../../../redux-context/hooks";
+import { deleteTaskMenu } from "../../../redux-context/taskMenuSlice";
 import { useEffect, useRef } from "react";
 
 function TaskDropdown({
