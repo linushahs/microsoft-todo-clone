@@ -6,10 +6,6 @@ import ThreedotsContainer from "./ThreedotsContainer";
 export default function Header() {
   const [isThreeDotsClicked, setIsThreeDotsClicked] = useState(false);
 
-  const handleThreeDots = (state: boolean) => {
-    setIsThreeDotsClicked(state);
-  };
-
   return (
     <div className="flex items-center justify-between  text-white">
       {/* left side --------------->  */}
@@ -29,7 +25,7 @@ export default function Header() {
             onClick={() => setIsThreeDotsClicked(!isThreeDotsClicked)}
           />
           {isThreeDotsClicked ? (
-            <ThreedotsContainer handleThreeDots={handleThreeDots} />
+            <ThreedotsContainer setIsThreeDotsClicked={setIsThreeDotsClicked} />
           ) : null}
         </div>
       </div>

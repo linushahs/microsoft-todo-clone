@@ -82,19 +82,21 @@ function User() {
               animate={{ opacity: 1, y: "0%", zIndex: 50 }}
               transition={{ duration: 0.2, type: "spring", stiffness: 100 }}
               ref={dropdownRef}
-              className="absolute left-5  top-20 z-10 w-[260px] rounded border-[0.5px] border-gray-600 bg-gray-900 text-white shadow-md"
+              className="absolute left-5  top-20 z-10 w-[260px] rounded border-[0.5px] border-gray-600 bg-gray-800 text-white shadow-md"
             >
               <li
                 onClick={() => handleMenu("manage")}
                 className="flex cursor-pointer items-center border-b border-b-gray-600 px-4 py-3 hover:bg-gray-700"
               >
-                <AiOutlineUserSwitch className="icon" /> Manage accounts
+                <AiOutlineUserSwitch className="mr-3 text-[18px] text-gray-400" />{" "}
+                Manage accounts
               </li>
               <li
                 onClick={() => handleMenu("setting")}
                 className="flex cursor-pointer items-center px-4 py-3 hover:bg-gray-700"
               >
-                <IoSettingsOutline className="icon" /> Settings
+                <IoSettingsOutline className="mr-3 text-[18px] text-gray-400" />{" "}
+                Settings
               </li>
             </motion.ul>
           ) : null}

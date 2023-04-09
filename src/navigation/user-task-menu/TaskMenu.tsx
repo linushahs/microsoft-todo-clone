@@ -15,7 +15,6 @@ function TaskMenu({
   children: React.ReactElement;
 }) {
   // ref variable -------------->
-  const containerRef = useRef<HTMLDivElement | null>(null);
   const menuRef = useRef<null | HTMLInputElement>(null);
   const dispatch = useAppDispatch();
 
@@ -44,19 +43,12 @@ function TaskMenu({
   const handleDropdown = () => {
     window.oncontextmenu = () => false;
     setIsDropdownActive(!isDropdownActive);
-
-    document.addEventListener("mousedown", (event: MouseEvent) => {
-      let outSideClick = true;
-
-      containerRef.current?.childNodes.forEach((elem) => {
-        if (elem == event.target) {
-          outSideClick = false;
-        }
-      });
-
-      if (outSideClick) setIsDropdownActive(false);
-    });
   };
+
+  // //setContainerRef() method ------------->
+  // const setContainerRef = (ref: React.MutableRefObject<HTMLDivElement>) => {
+  //   containerRef = ref;
+  // };
 
   return (
     <div className="relative">

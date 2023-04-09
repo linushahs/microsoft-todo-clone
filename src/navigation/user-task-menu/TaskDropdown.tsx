@@ -1,12 +1,12 @@
 import { AnimatePresence, motion } from "framer-motion";
-import { useEffect, useRef, useState } from "react";
-import { BsPrinter } from "react-icons/bs";
-import { HiOutlineMail, HiUsers } from "react-icons/hi";
-import { CgRename } from "react-icons/cg";
 import { BiDuplicate } from "react-icons/bi";
+import { BsPrinter } from "react-icons/bs";
+import { CgRename } from "react-icons/cg";
+import { HiOutlineMail, HiUsers } from "react-icons/hi";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { useAppDispatch } from "../../redux/hooks";
 import { deleteTaskMenu } from "../../redux/taskMenuSlice";
+import { useEffect, useRef } from "react";
 
 function TaskDropdown({
   id,
@@ -15,28 +15,28 @@ function TaskDropdown({
   id: number;
   setIsDropdownActive: Function;
 }) {
-  const containerRef = useRef<HTMLDivElement | null>(null);
   const dispatch = useAppDispatch();
+  const containerRef = useRef<HTMLDivElement | null>(null);
 
-  // useEffect(() => {
-  //   const handleMouseDown = (event: MouseEvent) => {
-  //     let outSideClick = true;
+  //handleMouseDown() method -------------------------
+  // -------------------------------------------->
+  const handleMouseDown = (event: MouseEvent) => {
+    let outSideClick = true;
 
-  //     containerRef.current?.childNodes.forEach((elem) => {
-  //       if (elem == event.target) {
-  //         outSideClick = false;
-  //       }
-  //     });
+    if (containerRef.current == event.target) {
+      outSideClick = false;
+    }
 
-  //     if (outSideClick) setIsDropdownActive(false);
-  //   };
+    if (outSideClick) setIsDropdownActive(false);
+  };
 
-  //   // If mouse is clicked outside the dropdown element then
-  //   // dropdown will close
-  //   document.addEventListener("mousedown", handleMouseDown);
+  //useEffect method -------------------------
+  // -------------------------------------------->
+  useEffect(() => {
+    document.addEventListener("click", handleMouseDown);
 
-  //   return document.removeEventListener("mousedown", handleMouseDown);
-  // }, []);
+    return () => document.removeEventListener("click", handleMouseDown);
+  }, []);
 
   return (
     <AnimatePresence>
@@ -78,7 +78,10 @@ function TaskDropdown({
 
         {/* Due Tomorrow ----------------------->  */}
         {/* <-------------------------------------------->  */}
-        <div className="flex w-full cursor-pointer items-center  gap-4 px-4 py-3 hover:bg-gray-700">
+        <div
+          onClick={() => console.log("it clicked")}
+          className="flex w-full cursor-pointer items-center  gap-4 px-4 py-3 hover:bg-gray-700"
+        >
           <BiDuplicate className="text-[20px] text-gray-400" />
           <h2>Duplicate List</h2>
         </div>

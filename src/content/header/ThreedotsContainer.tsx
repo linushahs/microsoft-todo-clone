@@ -11,29 +11,33 @@ import { AnimatePresence, motion } from "framer-motion";
 import { HiOutlineMail } from "react-icons/hi";
 
 export default function ThreedotsContainer({
-  handleThreeDots,
+  setIsThreeDotsClicked,
 }: {
-  handleThreeDots: Function;
+  setIsThreeDotsClicked: Function;
 }) {
-  const colors = ["#788CDE", "#BC7ABC", "#E46C8C", "red-500", "blue-500"];
   const colorStyle = "h-11 w-11";
   const [showSortByDropdown, setShowSortByDropdown] = useState(false);
 
-  const containerRef = useRef<HTMLDivElement>(null);
+  const containerRef = useRef<HTMLDivElement | null>(null);
 
+  //handleMouseDown() method -------------------------
+  // -------------------------------------------->
+  const handleMouseDown = (event: MouseEvent) => {
+    let outSideClick = true;
+
+    if (containerRef.current == event.target) {
+      outSideClick = false;
+    }
+
+    if (outSideClick) setIsThreeDotsClicked(false);
+  };
+
+  //useEffect method -------------------------
+  // -------------------------------------------->
   useEffect(() => {
-    // If mouse is clicked outside the dropdown element then
-    // dropdown will close
-    document.addEventListener("mousedown", (event) => {
-      let outSideClick = true;
-      containerRef.current?.childNodes.forEach((elem) => {
-        if (elem == event.target) {
-          outSideClick = false;
-        }
-      });
+    document.addEventListener("click", handleMouseDown);
 
-      if (outSideClick) handleThreeDots(false);
-    });
+    return () => document.removeEventListener("click", handleMouseDown);
   }, []);
 
   return (
@@ -47,7 +51,10 @@ export default function ThreedotsContainer({
         className="absolute right-0 top-full mt-2.5 min-w-[290px] rounded border border-gray-600 bg-gray-800 "
       >
         {/* rename list ----------------------->  */}
-        <div className="flex cursor-pointer items-center gap-4 px-4 py-3 hover:bg-gray-700">
+        <div
+          onClick={() => console.log("it clicked")}
+          className="flex cursor-pointer items-center gap-4 px-4 py-3 hover:bg-gray-700"
+        >
           <CgRename className="text-[20px] text-gray-400" />
           Rename List
         </div>
