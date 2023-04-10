@@ -90,6 +90,9 @@ function TaskMenu({
       {isDropdownActive ? (
         <TaskDropdown id={id} setIsDropdownActive={setIsDropdownActive} />
       ) : null}
+
+      {/* Today I took break ------------------------>  */}
+      {/* This day was not productive ----------------- >  */}
     </div>
   );
 }
