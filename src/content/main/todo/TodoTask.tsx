@@ -20,7 +20,6 @@ export default function TodoTask({ data }: { data: TaskListType }) {
   };
 
   const handleDropdown = (e: React.MouseEvent<HTMLLIElement>) => {
-    console.log(e.clientX, e.clientY);
     window.oncontextmenu = () => false;
     setDropdownDimension({ x: e.clientX, y: e.clientY });
     setShowTaskDropdown(!showTaskDropdown);
@@ -33,7 +32,7 @@ export default function TodoTask({ data }: { data: TaskListType }) {
   return (
     <li
       onContextMenu={(e) => handleDropdown(e)}
-      className="flex h-[54px] cursor-pointer items-center justify-between rounded-md bg-gray-700 p-4 text-white hover:bg-gray-600"
+      className="mb-1 flex h-[54px] cursor-pointer items-center justify-between rounded-md bg-gray-700 p-4 text-white hover:bg-gray-600"
     >
       <div className="flex items-center gap-4">
         <span

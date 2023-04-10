@@ -3,8 +3,20 @@ import Header from "./header/Header";
 import TodoContainer from "./main/todo/TodoContainer";
 import AddTask from "./main/AddTask";
 import CompletedContainer from "./main/completed/CompletedContainer";
+import { useAppSelector } from "../../redux-context/hooks";
 
 export default function ContentWrapper() {
+  const todoTasks = useAppSelector((state) => state.todoTasks.taskList);
+  const completedTasks = useAppSelector(
+    (state) => state.completedTasks.taskList
+  );
+
+  const totalEmptySpaces = new Array(8).fill(0);
+  const emptySpacesForTodo = new Array(8 - todoTasks.length).fill(0);
+  const emptySpacesForBoth = new Array(
+    7 - (todoTasks.length + completedTasks.length)
+  ).fill(0);
+
   return (
     <div className="flex h-screen w-full flex-col bg-gray-900 px-8 pb-8 pt-5">
       <Header />
@@ -31,12 +43,19 @@ export default function ContentWrapper() {
       <TodoContainer />
       <CompletedContainer />
       <ul>
-        <li className="h-[54px] border-b-2 border-b-gray-800"></li>
-        <li className="h-[54px] border-b-2 border-b-gray-800"></li>
-        <li className="h-[54px] border-b-2 border-b-gray-800"></li>
-        <li className="h-[54px] border-b-2 border-b-gray-800"></li>
-        <li className="h-[54px] "></li>
+        {todoTasks.length && completedTasks.length
+          ? emptySpacesForBoth.map((_) => (
+              <li className=" mb-1 h-[54px] border-b-2 border-b-gray-800 "></li>
+            ))
+          : todoTasks.length
+          ? emptySpacesForTodo.map((_) => (
+              <li className="mb-1 h-[54px] border-b-2 border-b-gray-800 "></li>
+            ))
+          : totalEmptySpaces.map((_) => (
+              <li className="mb-1 h-[54px] border-b-2 border-b-gray-800 "></li>
+            ))}
       </ul>
+
       <AddTask />
     </div>
   );

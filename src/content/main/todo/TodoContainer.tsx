@@ -8,7 +8,7 @@ export default function TodoContainer() {
     <>
       {/* When there are todos ----------------->  */}
       <div className="mt-6">
-        <ul className="flex flex-col gap-1">
+        <ul className="flex flex-col ">
           {tasks.map((data) => (
             <TodoTask data={data} key={data.id} />
           ))}

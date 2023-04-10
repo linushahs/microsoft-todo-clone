@@ -18,7 +18,7 @@ export default function CompletedTask({ data }: { data: TaskListType }) {
     dispatch(deleteCompletedTask(data));
   };
   return (
-    <li className="flex h-[54px] cursor-pointer items-center justify-between rounded-md bg-gray-700 p-4 text-white hover:bg-gray-600">
+    <li className="mb-1 flex h-[54px] cursor-pointer items-center justify-between rounded-md bg-gray-700 p-4 text-white hover:bg-gray-600">
       <div className="flex items-center gap-4">
         <BsCheckCircleFill
           className="h-5 w-5 text-red-400"
