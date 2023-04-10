@@ -11,6 +11,8 @@ export default function ContentWrapper() {
     (state) => state.completedTasks.taskList
   );
 
+  //empty spaces according to todo and completed tasks
+  // -------------------------------------------- >
   const totalEmptySpaces = new Array(8).fill(0);
   const emptySpacesForTodo = new Array(8 - todoTasks.length).fill(0);
   const emptySpacesForBoth = new Array(
@@ -42,6 +44,8 @@ export default function ContentWrapper() {
 
       <TodoContainer />
       <CompletedContainer />
+
+      {/* Empty spaces mapping  ---------------->  */}
       <ul>
         {todoTasks.length && completedTasks.length
           ? emptySpacesForBoth.map((_) => (
