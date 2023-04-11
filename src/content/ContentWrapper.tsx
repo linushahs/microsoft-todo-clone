@@ -45,6 +45,9 @@ export default function ContentWrapper() {
       <TodoContainer />
       <CompletedContainer />
 
+      {/* Today was not productive ---------------->  */}
+      {/* I just did nothing... I don't know why -------------->  */}
+
       {/* Empty spaces mapping  ---------------->  */}
       <ul>
         {todoTasks.length && completedTasks.length
