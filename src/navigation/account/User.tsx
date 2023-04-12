@@ -7,6 +7,7 @@ import ManageAccount from "./manageAccount";
 import AddAccount from "./addAccount";
 import { motion, AnimatePresence } from "framer-motion";
 import React from "react";
+import { useAppSelector } from "../../../redux-context/hooks";
 
 function User() {
   const [showAddAccount, setShowAddAccount] = useState(false);
@@ -15,6 +16,9 @@ function User() {
 
   //ref variable
   const dropdownRef = useRef<HTMLUListElement | null>(null);
+
+  //user data from redux
+  const users = useAppSelector((state) => state.users.userList);
 
   const handleMenu = (type: string) => {
     if (type === "manage") {
@@ -64,6 +68,7 @@ function User() {
           alt="Logo"
           className="mr-2 h-12 w-12 rounded-full bg-purple-600"
         />
+
         <span className="relative cursor-pointer text-white">
           <h2>Sunil Shah</h2>
           <div className="flex items-center gap-2">
@@ -104,10 +109,7 @@ function User() {
       </header>
 
       {showManageAccount ? (
-        <ManageAccount
-          hideManageAccount={hideManageAccount}
-          displayAddAccount={displayAddAccount}
-        />
+        <ManageAccount hideManageAccount={hideManageAccount} />
       ) : null}
       {showAddAccount ? <AddAccount /> : null}
     </section>
