@@ -1,7 +1,13 @@
 import React, { useState } from "react";
 import AddAccount from "./addAccount";
 
-function ManageAccount({ hideManageAccount, displayAddAccount }) {
+function ManageAccount({
+  hideManageAccount,
+  displayAddAccount,
+}: {
+  hideManageAccount: Function;
+  displayAddAccount: Function;
+}) {
   return (
     <>
       <div className="absolute top-0 h-screen w-screen bg-black/50 text-white">
