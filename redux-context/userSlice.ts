@@ -2,12 +2,14 @@ import { createSlice } from "@reduxjs/toolkit";
 import { User } from "firebase/auth";
 
 export interface UserType {
+  id: string;
   name: string;
   email: string;
   imgAddress: string;
 }
 
 const defaultUser = {
+  id: "E75h3fhgk3",
   name: "Linus Hahs",
   email: "linus07@gmail.com",
   imgAddress:
@@ -18,14 +20,18 @@ const userSlice = createSlice({
   name: "users",
   initialState: {
     userList: <UserType[]>[defaultUser],
+    selectedUser: { ...defaultUser },
   },
   reducers: {
     addUser: (state, action) => {
       state.userList = [...state.userList, action.payload.user];
     },
+    selectUser: (state, action) => {
+      state.selectedUser = { ...action.payload.user };
+    },
   },
 });
 
-export const { addUser } = userSlice.actions;
+export const { addUser, selectUser } = userSlice.actions;
 
 export default userSlice.reducer;

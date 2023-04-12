@@ -1,7 +1,7 @@
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { auth } from "../../../firebase-connection/firebase";
 import { useAppDispatch, useAppSelector } from "../../../redux-context/hooks";
-import { addUser } from "../../../redux-context/userSlice";
+import { addUser, selectUser } from "../../../redux-context/userSlice";
 
 function ManageAccount({ hideManageAccount }: { hideManageAccount: Function }) {
   const provider = new GoogleAuthProvider();
@@ -17,6 +17,7 @@ function ManageAccount({ hideManageAccount }: { hideManageAccount: Function }) {
         dispatch(
           addUser({
             user: {
+              id: user.uid,
               name: user.displayName,
               email: user.email,
               imgAddress: user.photoURL,
@@ -41,10 +42,11 @@ function ManageAccount({ hideManageAccount }: { hideManageAccount: Function }) {
 
           {/* list of users --------------------> 
           -------------------------------------->  */}
-          {users.map((user, id) => (
+          {users.map((user) => (
             <div
               className="flex cursor-pointer items-center gap-3 px-6 py-4 hover:bg-gray-800"
-              key={id}
+              onClick={() => dispatch(selectUser({ user }))}
+              key={user.id}
             >
               <img
                 src={user.imgAddress}
@@ -69,9 +71,9 @@ function ManageAccount({ hideManageAccount }: { hideManageAccount: Function }) {
           >
             <span className="mx-2 text-lg">+</span> Add account
           </p>
-          <p className="mb-4 mr-6 mt-2 text-right ">
+          <p className="my-4 mr-6  text-right ">
             <button
-              className="rounded border border-gray-600 bg-black/50 px-4 py-2 hover:bg-black/30"
+              className="rounded border border-gray-600 bg-black/50 px-4 py-1.5 hover:bg-black/30"
               onClick={() => hideManageAccount()}
             >
               Close

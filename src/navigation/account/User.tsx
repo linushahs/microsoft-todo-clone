@@ -18,7 +18,7 @@ function User() {
   const dropdownRef = useRef<HTMLUListElement | null>(null);
 
   //user data from redux
-  const users = useAppSelector((state) => state.users.userList);
+  const selectedUser = useAppSelector((state) => state.users.selectedUser);
 
   const handleMenu = (type: string) => {
     if (type === "manage") {
@@ -64,16 +64,16 @@ function User() {
         onClick={() => handleDropdown()}
       >
         <img
-          src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80"
+          src={selectedUser.imgAddress}
           alt="Logo"
           className="mr-2 h-12 w-12 rounded-full bg-purple-600"
         />
 
-        <span className="relative cursor-pointer text-white">
-          <h2>Sunil Shah</h2>
+        <span className="relative w-full cursor-pointer text-white">
+          <h2>{selectedUser.name}</h2>
           <div className="flex items-center gap-2">
-            <h3 className="text-gray-400">sunntraveler2004@outlook.com</h3>
-            <BsChevronExpand />
+            <h3 className="text-gray-400">{selectedUser.email}</h3>
+            <BsChevronExpand className="ml-auto " />
           </div>
         </span>
 
