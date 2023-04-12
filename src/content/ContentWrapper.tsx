@@ -51,15 +51,24 @@ export default function ContentWrapper() {
       {/* Empty spaces mapping  ---------------->  */}
       <ul>
         {todoTasks.length && completedTasks.length
-          ? emptySpacesForBoth.map((_) => (
-              <li className=" mb-1 h-[54px] border-b-2 border-b-gray-800 "></li>
+          ? emptySpacesForBoth.map((_, id) => (
+              <li
+                className=" mb-1 h-[54px] border-b-2 border-b-gray-800 "
+                key={id}
+              ></li>
             ))
           : todoTasks.length
-          ? emptySpacesForTodo.map((_) => (
-              <li className="mb-1 h-[54px] border-b-2 border-b-gray-800 "></li>
+          ? emptySpacesForTodo.map((_, id) => (
+              <li
+                className="mb-1 h-[54px] border-b-2 border-b-gray-800 "
+                key={id}
+              ></li>
             ))
-          : totalEmptySpaces.map((_) => (
-              <li className="mb-1 h-[54px] border-b-2 border-b-gray-800 "></li>
+          : totalEmptySpaces.map((_, id) => (
+              <li
+                className="mb-1 h-[54px] border-b-2 border-b-gray-800 "
+                key={id}
+              ></li>
             ))}
       </ul>
 
