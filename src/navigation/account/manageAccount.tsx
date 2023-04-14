@@ -1,38 +1,10 @@
-import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
-import { auth } from "../../../firebase-connection/firebase";
+import { signInWithGoogle, signOut } from "../../../firebase-connection/auth";
 import { useAppDispatch, useAppSelector } from "../../../redux-context/hooks";
-import { addUser, selectUser } from "../../../redux-context/userSlice";
+import { selectUser } from "../../../redux-context/userSlice";
 
 function ManageAccount({ hideManageAccount }: { hideManageAccount: Function }) {
-  const provider = new GoogleAuthProvider();
   const dispatch = useAppDispatch();
   const users = useAppSelector((state) => state.users.userList);
-
-  const signUpWithGoogle = () => {
-    signInWithPopup(auth, provider)
-      .then((result) => {
-        // The signed-in user info.
-        const user = result.user;
-        console.log(user);
-        dispatch(
-          addUser({
-            user: {
-              id: user.uid,
-              name: user.displayName,
-              email: user.email,
-              imgAddress: user.photoURL,
-            },
-          })
-        );
-      })
-      .catch((error) => {
-        // Handle Errors here.
-        const errorMessage = error.message;
-        // The email of the user's account used.
-        const email = error.customData.email;
-        console.log(errorMessage);
-      });
-  };
 
   return (
     <>
@@ -57,7 +29,10 @@ function ManageAccount({ hideManageAccount }: { hideManageAccount: Function }) {
                 <h3>{user.name}</h3>
                 <p className="text-gray-400">{user.email}</p>
               </div>
-              <button className="ml-auto rounded bg-red-500 px-2 py-1 text-white hover:bg-red-600">
+              <button
+                onClick={() => signOut()}
+                className="ml-auto rounded bg-red-500 px-2 py-1 text-white hover:bg-red-600"
+              >
                 Sign out
               </button>
             </div>
@@ -67,7 +42,7 @@ function ManageAccount({ hideManageAccount }: { hideManageAccount: Function }) {
           ---------------------------------->  */}
           <p
             className=" cursor-pointer px-6 pb-3  pt-1 hover:bg-gray-800"
-            onClick={() => signUpWithGoogle()}
+            onClick={() => signInWithGoogle()}
           >
             <span className="mx-2 text-lg">+</span> Add account
           </p>

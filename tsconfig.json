@@ -16,6 +16,6 @@
     "noEmit": true,
     "jsx": "react-jsx"
   },
-  "include": ["src", "redux-context"],
+  "include": ["src", "redux-context", "firebase-connection/auth.ts"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
