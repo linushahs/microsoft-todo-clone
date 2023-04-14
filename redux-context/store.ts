@@ -3,6 +3,7 @@ import todoReducer from "./todoTaskSlice";
 import completedTaskReducer from "./completedTaskSlice";
 import taskMenuReducer from "./taskMenuSlice";
 import userReducer from "./userSlice";
+import listReducer from "./listSlice";
 import { firebaseReducer } from "react-redux-firebase";
 import { firestoreReducer } from "redux-firestore";
 
@@ -12,6 +13,7 @@ export const store = configureStore({
     completedTasks: completedTaskReducer,
     taskMenus: taskMenuReducer,
     users: userReducer,
+    lists: listReducer,
     firestore: firestoreReducer,
     firebase: firebaseReducer,
   },
