@@ -1,10 +1,38 @@
+import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { signInWithGoogle, signOut } from "../../../firebase-connection/auth";
 import { useAppDispatch, useAppSelector } from "../../../redux-context/hooks";
-import { selectUser } from "../../../redux-context/userSlice";
+import { addUser, selectUser } from "../../../redux-context/userSlice";
+import { auth } from "../../../firebase-connection/firebase";
 
 function ManageAccount({ hideManageAccount }: { hideManageAccount: Function }) {
   const dispatch = useAppDispatch();
   const users = useAppSelector((state) => state.users.userList);
+
+  const signInWithGoogle = async () => {
+    const provider = new GoogleAuthProvider();
+
+    signInWithPopup(auth, provider)
+      .then((result) => {
+        // The signed-in user info.
+        const user = result.user;
+        console.log(user);
+
+        dispatch(
+          addUser({
+            user: {
+              id: user.uid,
+              name: user.displayName,
+              email: user.email,
+              imgAddress: user.photoURL,
+            },
+          })
+        );
+      })
+      .catch((error) => {
+        // Handle Errors here.
+        console.log(error.message);
+      });
+  };
 
   return (
     <>

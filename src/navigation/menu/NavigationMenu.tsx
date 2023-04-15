@@ -3,6 +3,8 @@ import { useRef, useState } from "react";
 import { BsPrinter } from "react-icons/bs";
 import { HiOutlineMail } from "react-icons/hi";
 import DropdownMenu from "./DropdownMenu";
+import { useAppDispatch, useAppSelector } from "../../../redux-context/hooks";
+import { selectList } from "../../../redux-context/listSlice";
 
 function NavigationMenu({
   text,
@@ -15,6 +17,8 @@ function NavigationMenu({
 }) {
   // ref variable -------------->
   const dropdownRef = useRef<null | HTMLUListElement>(null);
+  const dispatch = useAppDispatch();
+  const selectedList = useAppSelector((state) => state.lists.selectedList);
 
   //State variables
   const [isDropdownActive, setIsDropdownActive] = useState(false);
@@ -39,10 +43,20 @@ function NavigationMenu({
     });
   };
 
+  // handleClick() method of navigation menu ----------->
+  // ---------------------------------------------------->
+  const handleClick = () => {
+    dispatch(selectList({ title: text }));
+  };
+
   return (
     <div className="relative">
       <li
         onContextMenu={() => handleDropdown()}
+        onClick={() => handleClick()}
+        style={{
+          backgroundColor: selectedList === text ? "rgb(75 85 99)" : "",
+        }}
         className=" mx-2 my-2 flex rounded  px-3 py-2 text-white hover:bg-gray-600"
       >
         <a
@@ -61,6 +75,12 @@ function NavigationMenu({
             {count}
           </span>
         </div>
+
+        {/* side thin bar (displayed when selected) --------->  */}
+        <span
+          style={{ display: selectedList === text ? "block" : "none" }}
+          className="absolute left-2 top-2.5 h-5 w-1 rounded-full bg-cyan-400"
+        ></span>
       </li>
       {/* Dropdown section ------------------------------------------->  */}
       {/* <---------------------------------------------------------------> */}
