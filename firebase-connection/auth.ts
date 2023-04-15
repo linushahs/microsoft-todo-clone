@@ -5,31 +5,7 @@ import { useAppDispatch } from "../redux-context/hooks";
 
 // signInWithGoogle function ----------------------------->
 // ------------------------------------------------------->
-export const signInWithGoogle = () => {
-  const provider = new GoogleAuthProvider();
-  const dispatch = useAppDispatch();
-
-  signInWithPopup(auth, provider)
-    .then((result) => {
-      // The signed-in user info.
-      const user = result.user;
-      console.log(user);
-      dispatch(
-        addUser({
-          user: {
-            id: user.uid,
-            name: user.displayName,
-            email: user.email,
-            imgAddress: user.photoURL,
-          },
-        })
-      );
-    })
-    .catch((error) => {
-      // Handle Errors here.
-      console.log(error.message);
-    });
-};
+export const signInWithGoogle = () => {};
 
 // signOut function ----------------------------->
 // ------------------------------------------------------->

@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { RootState } from "./store";
+import { db } from "../firebase-connection/firebase";
 
 export interface TaskListType {
   id: string;
