@@ -1,16 +1,13 @@
+import { AnimatePresence, motion } from "framer-motion";
+import { useRef, useState } from "react";
+import { AiOutlineUserSwitch } from "react-icons/ai";
 import { BsChevronExpand } from "react-icons/bs";
 import { IoSettingsOutline } from "react-icons/io5";
-import { AiOutlineUserSwitch } from "react-icons/ai";
-import "./user.css";
-import { useState, useEffect, useRef } from "react";
-import ManageAccount from "./manageAccount";
-import AddAccount from "./addAccount";
-import { motion, AnimatePresence } from "framer-motion";
-import React from "react";
 import { useAppSelector } from "../../../redux-context/hooks";
+import ManageAccount from "./manageAccount";
+import "./user.css";
 
 function User() {
-  const [showAddAccount, setShowAddAccount] = useState(false);
   const [showManageAccount, setShowManageAccount] = useState(false);
   const [isDropdownActive, setIsDropdownActive] = useState(false);
 
@@ -29,7 +26,6 @@ function User() {
   };
 
   const displayAddAccount = () => {
-    setShowAddAccount(true);
     setShowManageAccount(false);
   };
 
@@ -111,7 +107,6 @@ function User() {
       {showManageAccount ? (
         <ManageAccount hideManageAccount={hideManageAccount} />
       ) : null}
-      {showAddAccount ? <AddAccount /> : null}
     </section>
   );
 }

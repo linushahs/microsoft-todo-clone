@@ -1,8 +1,8 @@
 import { configureStore } from "@reduxjs/toolkit";
-import todoReducer from "./todoTaskSlice";
+import todoReducer, { TaskListType } from "./todoTaskSlice";
 import completedTaskReducer from "./completedTaskSlice";
-import taskMenuReducer from "./taskMenuSlice";
-import userReducer from "./userSlice";
+import taskMenuReducer, { MenuListType } from "./taskMenuSlice";
+import userReducer, { UserType } from "./userSlice";
 import listReducer from "./listSlice";
 import { firebaseReducer } from "react-redux-firebase";
 import { firestoreReducer } from "redux-firestore";
@@ -19,8 +19,33 @@ export const store = configureStore({
   },
 });
 
+interface FirebaseState {
+  auth: any;
+}
+
 // Infer the `RootState` and `AppDispatch` types from the store itself
-export type RootState = ReturnType<typeof store.getState>;
+// define root state type
+export type RootState = {
+  todoTasks: {
+    taskList: TaskListType[];
+  };
+  completedTasks: {
+    taskList: TaskListType[];
+  };
+  taskMenus: {
+    menuList: MenuListType[];
+  };
+  users: {
+    userList: UserType[];
+    selectedUser: UserType;
+    taskList: TaskListType[];
+  };
+  lists: {
+    selectedList: string;
+    deletedList: string[];
+  };
+  firebase: FirebaseState;
+};
 // Inferred type: {posts: PostsState, comments: CommentsState, users: UsersState}
 export type AppDispatch = typeof store.dispatch;
 

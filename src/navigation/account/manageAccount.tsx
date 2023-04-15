@@ -1,8 +1,8 @@
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
-import { signInWithGoogle, signOut } from "../../../firebase-connection/auth";
+import { signOut } from "../../../firebase-connection/auth";
+import { auth } from "../../../firebase-connection/firebase";
 import { useAppDispatch, useAppSelector } from "../../../redux-context/hooks";
 import { addUser, selectUser } from "../../../redux-context/userSlice";
-import { auth } from "../../../firebase-connection/firebase";
 
 function ManageAccount({ hideManageAccount }: { hideManageAccount: Function }) {
   const dispatch = useAppDispatch();

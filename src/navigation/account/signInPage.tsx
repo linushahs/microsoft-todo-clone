@@ -1,6 +1,42 @@
 import React from "react";
+import { useAppDispatch } from "../../../redux-context/hooks";
+import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { auth } from "../../../firebase-connection/firebase";
+import { addUser, selectUser } from "../../../redux-context/userSlice";
 
 export default function SignInPage() {
+  const dispatch = useAppDispatch();
+
+  const signInWithGoogle = async () => {
+    const provider = new GoogleAuthProvider();
+
+    signInWithPopup(auth, provider)
+      .then((result) => {
+        // The signed-in user info.
+        const user = result.user;
+        console.log(user);
+
+        const userData = {
+          id: user.uid,
+          name: user.displayName,
+          email: user.email,
+          imgAddress: user.photoURL,
+        };
+
+        dispatch(
+          addUser({
+            user: userData,
+          })
+        );
+
+        dispatch(selectUser({ user: userData }));
+      })
+      .catch((error) => {
+        // Handle Errors here.
+        console.log(error.message);
+      });
+  };
+
   return (
     <div className="flex h-screen w-screen flex-col items-center justify-center bg-gray-100">
       <div className="flex flex-col items-center gap-4 ">
@@ -209,7 +245,10 @@ export default function SignInPage() {
             </clipPath>
           </defs>
         </svg>
-        <button className="w-[240px] bg-[#436AF2] py-1 text-white">
+        <button
+          onClick={() => signInWithGoogle()}
+          className="w-[240px] bg-[#436AF2] py-1 text-white"
+        >
           Sign in
         </button>
         <h2 className="w-[240px] text-center text-gray-600">
