@@ -7,11 +7,9 @@ import { useAppSelector } from "../redux-context/hooks";
 import { RootState } from "../redux-context/store";
 
 function App() {
-  const firebaseAuth = useAppSelector(
-    (state: RootState) => state.firebase.auth
-  );
+  const userList = useAppSelector((state: RootState) => state.users.userList);
 
-  if (!firebaseAuth.uid) {
+  if (userList.length === 0) {
     return <SignInPage />;
   }
 

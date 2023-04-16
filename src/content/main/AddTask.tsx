@@ -17,7 +17,7 @@ export default function AddTask() {
   };
 
   return (
-    <div className="mt-auto flex items-center gap-3 rounded-md bg-gray-800 px-4 py-3 text-white">
+    <div className="mb-6 mt-auto flex items-center gap-3 rounded-md bg-gray-800 px-4 py-3 text-white">
       <BsPlusLg className="text-[22px]" />
       <input
         type="text"
